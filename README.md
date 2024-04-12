@@ -1,2 +1,2 @@
-# INF385T-JS_programming
+# INF_385T_JS_programming
 Final Project
