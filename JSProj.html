@@ -1,0 +1,70 @@
+<!doctype html>
+<html itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+<head>
+<title>FontColourLayout Pairing</title>
+
+<link href="https://fonts.googleapis.com/css?family=Lora:400i|Montserrat:700|Hind+Madurai:300" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="slider.css" />
+<link rel="stylesheet" href="style2.css" />
+
+</head>
+<body>
+<div class="container-fluid">
+<div class="row">
+<div class="controls col-md-2" id="title-controls">
+<a href="#" target="_blank" class="label" id="title-label">Select Font for Heading</a>
+<!-- <a href="#" class="btn btn-default btn-circle edit" id="title-edit"></a>
+<a href="#" class="btn btn-default btn-circle lock" id="title-lock"></a> -->
+</div>
+
+<div id="main" class="col-lg-7 col-md-8 col-md-offset-1 col-sm-9 col-xs-9">
+<div id="toolbar">
+
+<a href="#" id="selectColor" class="btn btn-default">Select Color</a>
+<a href="#" id="selectLayout" class="btn btn-default">Select Layout</a>
+<a href="#" id="selectSize" class="btn btn-default">Select Font Size</a>
+<!-- <input id="slider" data-slider-id='slide' type="text" data-slider-min="-1" data-slider-max="1" data-slider-step="0.05" data-slider-value="0"/> -->
+</div>
+
+<textarea id="h1" data-family="Montserrat" data-variant="700">Font pairing made simple</textarea>
+</div>
+</div>
+
+<div class="row">
+<div class="controls col-md-2">
+<a href="#" target="_blank" class="label" id="subtitle-label">Select Font for Sub-Heading</a>
+</div>
+<div class="col-lg-5 col-md-6 col-md-offset-1 col-sm-7 col-xs-9">
+<textarea id="h2" data-family="Lora" data-variant="italic">Generate font combinations with deep learning</textarea>
+</div>
+</div>
+
+<div class="row">
+<div class="controls col-md-2">
+<a href="#" target="_blank" class="label" id="content-label">Select Font for Paragraph</a>
+
+</div>
+<div class="col-lg-4 col-md-5 col-md-offset-1 col-sm-7 col-xs-9">
+<textarea id="content" data-family="Hind Madurai" data-variant="300">Click (Generate) to create a new font pairing, (Lock) to lock fonts that you want to keep, and (Edit) to choose a font manually. The text is editable, try replacing it with your company name or other copy.
+
+The goal of font pairing is to select fonts that share an overarching theme yet have a pleasing contrast. Which fonts work together is largely a matter of intuition, but we approach this problem with a neural net. See Github for more technical details.
+</textarea>
+
+</div>
+</div>
+</div>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-52772108-8', 'auto');
+  ga('send', 'pageview');
+
+  resize_elements();
+</script>
+</body>
+</html>
