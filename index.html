@@ -1,5 +1,5 @@
 <!doctype html>
-<html itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+<html lang="en">
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -24,10 +24,10 @@
 
     <div id="main" class="col-lg-7 col-md-8 col-md-offset-1 col-sm-9 col-xs-9">
       <div id="toolbar">
-
         <a href="#" id="selectColor" class="btn btn-default">Select Color</a>
         <a href="#" id="selectLayout" class="btn btn-default">Select Layout</a>
         <a href="#" id="selectSize" class="btn btn-default">Select Font Size</a>
+        <button onclick="changeFontFamily()">Pairing</button>
         <!-- <input id="slider" data-slider-id='slide' type="text" data-slider-min="-1" data-slider-max="1" data-slider-step="0.05" data-slider-value="0"/> -->
       </div>
       
@@ -59,7 +59,9 @@
   </div>
   </div>
 
-  <script>
+  <script src="./js/changeFont.js"></script>
+  <!-- <script>
+    //I commented out this Cookies Setting first lol
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -69,6 +71,6 @@
     ga('send', 'pageview');
 
     resize_elements();
-  </script>
+  </script> -->
 </body>
 </html>
