@@ -78,3 +78,48 @@ function changeFontFamily(divId) {
     }
 
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    const modal = document.getElementById('fontModal');
+    const btn = document.getElementById('select-font-size');
+    const span = document.getElementsByClassName('close')[0];
+    const headingSlider = document.getElementById('heading-slider');
+    const subheadingSlider = document.getElementById('subheading-slider');
+    const paragraphSlider = document.getElementById('paragraph-slider');
+    // According to the heading, sub-heading and paragraphs, assign these classes for changing the font-size
+    const headingElements = document.querySelectorAll('.heading');
+    const subheadingElements = document.querySelectorAll('.subheading');
+    const paragraphElements = document.querySelectorAll('.paragraph');
+
+    btn.onclick = function() {
+        modal.style.display = "block";
+    }
+
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+
+    function updateFontSize(elements, size) {
+        elements.forEach(element => {
+            element.style.fontSize = `${size / 10}em`;
+        });
+    }
+
+    headingSlider.addEventListener('input', function() {
+        updateFontSize(headingElements, headingSlider.value);
+    });
+
+    subheadingSlider.addEventListener('input', function() {
+        updateFontSize(subheadingElements, subheadingSlider.value);
+    });
+
+    paragraphSlider.addEventListener('input', function() {
+        updateFontSize(paragraphElements, paragraphSlider.value);
+    });
+});
