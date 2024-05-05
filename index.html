@@ -17,9 +17,8 @@
   <div class="container-fluid">
     <div class="row">
       <div class="controls col-md-2" id="title-controls">
-      <a href="#" target="_blank" class="label" id="title-label">Select Font for Heading</a>
-      <!-- <a href="#" class="btn btn-default btn-circle edit" id="title-edit"></a>
-      <a href="#" class="btn btn-default btn-circle lock" id="title-lock"></a> -->
+      <button class="label" id="title-label" onclick="changeFontFamily('h1')">Select Font for Heading</button>
+      <!-- <a href="#" target="_blank" class="label" id="title-label">Select Font for Heading</a> -->
     </div>
 
     <div id="main" class="col-lg-7 col-md-8 col-md-offset-1 col-sm-9 col-xs-9">
@@ -27,7 +26,7 @@
         <a href="#" id="selectColor" class="btn btn-default">Select Color</a>
         <a href="#" id="selectLayout" class="btn btn-default">Select Layout</a>
         <a href="#" id="selectSize" class="btn btn-default">Select Font Size</a>
-        <button onclick="changeFontFamily()">Pairing</button>
+       
         <!-- <input id="slider" data-slider-id='slide' type="text" data-slider-min="-1" data-slider-max="1" data-slider-step="0.05" data-slider-value="0"/> -->
       </div>
       
@@ -38,7 +37,8 @@
 
   <div class="row">
       <div class="controls col-md-2">
-        <a href="#" target="_blank" class="label" id="subtitle-label">Select Font for Sub-Heading</a>
+        <button class="label" id="subtitle-label" onclick="changeFontFamily('h2')">Select Font for Subtitle</button>
+        <!-- <a href="#" target="_blank" class="label" id="subtitle-label">Select Font for Sub-Heading</a> -->
       </div>
       <div class="col-lg-5 col-md-6 col-md-offset-1 col-sm-7 col-xs-9">
         <textarea id="h2" data-family="Lora" data-variant="italic">Generate font combinations with deep learning</textarea>
@@ -47,7 +47,8 @@
 
   <div class="row">
     <div class="controls col-md-2">
-    <a href="#" target="_blank" class="label" id="content-label">Select Font for Paragraph</a>
+      <button class="label" id="content-label" onclick="changeFontFamily('content')">Select Font for Paragraph</button>
+      <!-- <a href="#" target="_blank" class="label" id="content-label">Select Font for Paragraph</a> -->
   </div>
   <div class="col-lg-4 col-md-5 col-md-offset-1 col-sm-7 col-xs-9">
   <textarea id="content" data-family="Hind Madurai" data-variant="300">Click (Generate) to create a new font pairing, (Lock) to lock fonts that you want to keep, and (Edit) to choose a font manually. The text is editable, try replacing it with your company name or other copy.

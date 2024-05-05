@@ -43,9 +43,13 @@ function loadAllFonts() {
 loadAllFonts();
 
 // Store last selected font
-var lastSelectedFont = null;
+var lastSelectedFonts = {
+    h1: null,
+    h2: null,
+    content: null
+};
 
-function changeFontFamily() {
+function changeFontFamily(divId) {
     // Randomly Pick a Font-Family
     var randomFamilyIndex = Math.floor(Math.random() * Object.keys(fontFamilies).length);
     var randomFamily = Object.keys(fontFamilies)[randomFamilyIndex];
@@ -54,19 +58,19 @@ function changeFontFamily() {
     var randomFontIndex;
     do {
         randomFontIndex = Math.floor(Math.random() * fontFamilies[randomFamily].length);
-    } while (fontFamilies[randomFamily][randomFontIndex] === lastSelectedFont); // if last selected font is equal to random picked font, then reselect
+    } while (fontFamilies[randomFamily][randomFontIndex] === lastSelectedFonts[divId]); // if last selected font is equal to random picked font, then reselect
     var randomFont = fontFamilies[randomFamily][randomFontIndex];
 
     // update last selected font
-    lastSelectedFont = randomFont;
+    lastSelectedFonts[divId] = randomFont;
 
 
-    var mytxt = document.getElementById('h1');
+    var mytxt = document.getElementById(divId);
     if (mytxt) {
         var fontParts = randomFont.split(':');
         var fontName = fontParts[0].replace(/\+/g, ' ');
         var fontFamily = randomFamily;
-        if (randomFamily == "sansSerif") fontFamily = 'sans-serif';
+        if (randomFamily === "sansSerif") fontFamily = 'sans-serif';
 
         console.log(fontName);
         console.log(fontFamily);
