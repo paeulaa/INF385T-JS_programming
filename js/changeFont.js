@@ -1,4 +1,4 @@
-// 不同字体家族的字体列表
+// font&font family lists
 const fontFamilies = {
     serif: [
         'Playfair+Display:ital,wght@0,400..900;1,400..900', //"Playfair Display", serif;
