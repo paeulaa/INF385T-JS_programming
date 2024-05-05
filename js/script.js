@@ -1,3 +1,5 @@
+let currentTargetColumn = null;
+
 window.addEventListener("load", function () {
   applyLayout("twoColumns");
 });
@@ -89,7 +91,7 @@ function createColumnInnerContent(size) {
   content.style.color = "white"; // Set a color for demonstration
   content.style.backgroundColor = "black";
   content.style.borderRadius = "10px";
-  content.innerHTML = "Column " + size;
+  content.innerHTML = "<div id='demo-text'>Demo Text</div>";
   content.style.padding = "1rem"; // Use Bootstrap padding classes
   content.style.position = "relative";
   return content;
@@ -102,13 +104,7 @@ function createPopover() {
   popover.innerHTML = `
     <div class="popover-body">
         <button class="btn btn-default btn-circle">
-            <i class="fa-solid fa-font"></i>
-        </button>
-        <button class="btn btn-default btn-circle">
-            <i class="fa-solid fa-text-height"></i>
-        </button>
-        <button class="btn btn-default btn-circle">
-            <i class="fa-solid fa-palette"></i>
+            <i class="fa-solid fa-pen"></i>
         </button>
     </div>
   `;
@@ -122,18 +118,22 @@ function createBootstrapColumn(size) {
   let col = createColumn(size);
   let content = createColumnInnerContent(size);
   let popover = createPopover();
-  // Append popover to column
-  content.appendChild(popover);
-
+  content.appendChild(popover); // Append popover to content
   col.appendChild(content);
-  // Event listeners for showing/hiding the popover
+
+  // Event listeners for popover buttons
   col.addEventListener("mouseenter", function () {
-    popover.style.display = "block";
-    col.style.opacity = "0.75";
+    popover.style.display = "block"; // Show popover on mouse enter
+    col.style.opacity = "0.75"; // Optional: change opacity for visual feedback
   });
   col.addEventListener("mouseleave", function () {
-    popover.style.display = "none";
+    popover.style.display = "none"; // Hide popover on mouse leave
     col.style.opacity = "1";
+  });
+
+  // Handling popover button clicks to show font styling overlay
+  popover.addEventListener("click", function () {
+    showFontStylingOverlay(col); // Pass the column as an argument
   });
 
   return col;
@@ -164,12 +164,16 @@ document
 
 function addRow() {
   const rowDiv = document.createElement("div");
-  rowDiv.className = "row-input";
+  rowDiv.className = "row row-input border";
   rowDiv.innerHTML = `
-      <span class="row-label">Row:</span>
-      <div class="cols-container"></div>
-      <button type="button" class="btn btn-default" onclick="addColumn(this.parentElement)">Add Column</button>
-      <button type="button" class="btn btn-default" onclick="removeRow(this.parentElement)">Remove Row</button>
+      <span class="col-1 row-label">Row:</span>
+      <div class="col-11 cols-container"></div>
+      <button type="button" class="btn btn-default" onclick="addColumn(this.parentElement)">
+        <i class="fas fa-plus"></i> Add Column
+      </button>
+      <button type="button" class="btn btn-default" onclick="removeRow(this.parentElement)">
+        <i class="fas fa-trash"></i> Remove Row
+      </button>
     `;
   document.getElementById("rowsContainer").appendChild(rowDiv);
 }
@@ -186,4 +190,35 @@ function addColumn(rowDiv) {
 
 function removeRow(rowDiv) {
   rowDiv.remove();
+}
+
+function showFontStylingOverlay(targetColumn) {
+  currentTargetColumn = targetColumn; // Set the current target column
+  document.getElementById("fontStylingOverlay").style.display = "flex"; // Show the overlay
+}
+
+function closeFontStylingOverlay() {
+  document.getElementById("fontStylingOverlay").style.display = "none"; // Hide the overlay
+}
+
+function applyFontStyling() {
+  const fontSize = document.getElementById("fontSize").value;
+  const fontStyle = document.getElementById("fontStyle").value;
+  const fontColor = document.getElementById("fontColor").value;
+  const textContent = document.getElementById("textContent").value;
+
+  if (currentTargetColumn) {
+    let contentDiv = currentTargetColumn.querySelector("div");
+    contentDiv.style.fontSize = fontSize;
+    contentDiv.style.fontWeight = fontStyle.includes("bold")
+      ? "bold"
+      : "normal";
+    contentDiv.style.fontStyle = fontStyle.includes("italic")
+      ? "italic"
+      : "normal";
+    contentDiv.style.color = fontColor;
+    contentDiv.firstChild.textContent = textContent; // Set text content
+
+    closeFontStylingOverlay(); // Close the overlay after applying the styles
+  }
 }

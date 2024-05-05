@@ -25,6 +25,79 @@
   </head>
 
   <body style="position: relative">
+    <!-- Font Styling Overlay (Initially hidden) -->
+    <div
+      id="fontStylingOverlay"
+      style="
+        display: none;
+        position: fixed;
+        z-index: 9999999;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        align-items: center;
+        justify-content: center;
+      "
+    >
+      <div
+        class="overlay-content"
+        style="
+          background: white;
+          padding: 20px;
+          border-radius: 5px;
+          /* width: 300px; */
+        "
+      >
+        <h3>Font Styling</h3>
+        <form id="fontStylingForm">
+          <div class="container">
+            <div class="row mb-3">
+              <label for="fontSize">Font Size:</label>
+              <select id="fontSize">
+                <option value="14px">14px</option>
+                <option value="16px">16px</option>
+                <option value="18px">18px</option>
+                <!-- Add more sizes as needed -->
+              </select>
+            </div>
+            <div class="row mb-3">
+              <label for="fontStyle">Font Style:</label>
+              <select id="fontStyle">
+                <option value="normal">Normal</option>
+                <option value="italic">Italic</option>
+                <option value="bold">Bold</option>
+                <!-- Add more styles as needed -->
+              </select>
+            </div>
+            <div class="row mb-3">
+              <label for="fontColor">Font Color:</label>
+              <input type="color" id="fontColor" value="#000000" />
+            </div>
+            <div class="row mb-3">
+              <label for="textContent">Text Content:</label>
+              <textarea class="border rounded" id="textContent"></textarea>
+            </div>
+            <button
+              class="btn btn-default"
+              type="button"
+              onclick="applyFontStyling()"
+            >
+              Apply
+            </button>
+            <button
+              class="btn btn-danger"
+              type="button"
+              onclick="closeFontStylingOverlay()"
+            >
+              Close
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
     <div
       id="layoutDesigner"
       style="z-index: 999999; display: none"
@@ -37,12 +110,14 @@
             <!-- Rows and their columns will be added dynamically here -->
           </div>
           <button type="button" class="btn btn-default" onclick="addRow()">
-            Add Row
+            <i class="fas fa-plus"></i> Add Row
           </button>
-          <button type="submit" class="btn btn-default">Apply Layout</button>
+          <button type="submit" class="btn btn-default">
+            <i class="fas fa-check"></i> Apply Layout
+          </button>
         </form>
         <button class="btn btn-danger" onclick="hideLayoutDesigner()">
-          Close
+          <i class="fa-solid fa-xmark"></i> Close
         </button>
       </div>
     </div>
