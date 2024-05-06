@@ -82,7 +82,7 @@ button {
 }
 
 .controls {
-  background-color: #222;
+  /* background-color: #222; */
   width: 15%;
   float: left;
   position: relative;
