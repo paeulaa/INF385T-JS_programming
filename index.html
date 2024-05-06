@@ -1,97 +1,266 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg" href="/img/fav_icon.svg" />
     <title>FontColourLayout Pairing</title>
 
-    <link href="https://fonts.googleapis.com/css?family=Lora:400i|Montserrat:700|Hind+Madurai:300" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
-
+    <link
+      href="https://fonts.googleapis.com/css?family=Lora:400i|Montserrat:700|Hind+Madurai:300"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <link rel="stylesheet" href="./css/slider.css" />
     <link rel="stylesheet" href="./css/style2.css" />
-
-    </head>
-<body>
-  <div class="container-fluid">
-    <div class="row">
-      
-      <div class="controls col-md-2" id="title-controls">
-        <button class="label" id="title-label" onclick="changeFontFamily('h1')">Generate Font for Heading</button>
-      <!-- <a href="#" target="_blank" class="label" id="title-label">Select Font for Heading</a> -->
-      </div>
-      <div id="main" class="col-lg-7 col-md-8 col-md-offset-1 col-sm-9 col-xs-9">
-        <div id="toolbar">
+  </head>
+  <body style="overflow-x: hidden">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="controls col-md-2"></div>
+        <div id="toolbar" class="col col-md-offset-1">
           <a href="#" id="selectColor" class="btn btn-default">Select Color</a>
-          <a href="#" id="selectLayout" class="btn btn-default">Select Layout</a>
-          <a href="#" class="btn btn-default" id="select-font-size">Select Font-Size</a>
-            <div class="modal" id="fontModal">
-                <div class="modal-content">
-                    <span class="close" style="cursor:pointer;">&times;</span>
-                    <div>
-                        <label for="heading-slider">Heading Font Size:</label>
-                        <input type="range" id="heading-slider" min="60" max="100" value="60">
-                        <input type="number" id="heading-size-input" value="60" min="60" max="100" style="width: 6rem;">
-                    </div>
-                    <div>
-                        <label for="subheading-slider">Subheading Font Size:</label>
-                        <input type="range" id="subheading-slider" min="30" max="60" value="30">
-                        <input type="number" id="subheading-size-input" value="30" min="30" max="60" style="width: 6rem;">
-                    </div>
-                    <div>
-                        <label for="paragraph-slider">Paragraph Font Size:</label>
-                        <input type="range" id="paragraph-slider" min="12" max="30" value="12">
-                        <input type="number" id="paragraph-size-input" value="12" min="12" max="20" style="width:6rem;">
-                    </div>
+          <a
+            href="#"
+            id="selectLayout"
+            class="btn btn-default"
+            onclick="showOverlay();"
+            >Select Layout</a
+          >
+          <div id="layoutOverlay" class="overlay">
+            <div class="overlay-content container p-5">
+              <h2>Select a Layout</h2>
+              <div class="row g-5 p-5">
+                <div
+                  class="layout-option col-md-4 mb-4"
+                  onclick="applyDynamicLayout([[12],[12],[12]])"
+                >
+                  <div class="row">
+                    <div class="border p-2">100%</div>
+                    <div class="border p-2">100%</div>
+                    <div class="border p-2">100%</div>
+                  </div>
                 </div>
+                <div
+                  class="layout-option col-md-4 mb-4"
+                  onclick="applyDynamicLayout([[6,6],[6,6],[6,6]])"
+                >
+                  <div class="row">
+                    <div class="col col-6 border p-2">50%</div>
+                    <div class="col col-6 border p-2">50%</div>
+                    <div class="col col-6 border p-2">50%</div>
+                    <div class="col col-6 border p-2">50%</div>
+                    <div class="col col-6 border p-2">50%</div>
+                    <div class="col col-6 border p-2">50%</div>
+                  </div>
+                </div>
+                <div
+                  class="layout-option col-md-4 mb-4"
+                  onclick="applyDynamicLayout([[4,4,4],[4,4,4],[4,4,4]])"
+                >
+                  <div class="row">
+                    <div class="col col-4 border p-2">33%</div>
+                    <div class="col col-4 border p-2">33%</div>
+                    <div class="col col-4 border p-2">33%</div>
+                    <div class="col col-4 border p-2">33%</div>
+                    <div class="col col-4 border p-2">33%</div>
+                    <div class="col col-4 border p-2">33%</div>
+                    <div class="col col-4 border p-2">33%</div>
+                    <div class="col col-4 border p-2">33%</div>
+                    <div class="col col-4 border p-2">33%</div>
+                  </div>
+                </div>
+                <div
+                  class="layout-option col-md-4 mb-4"
+                  onclick="applyDynamicLayout([[12],[6,6],[3,3,3]])"
+                >
+                  <div class="row">
+                    <div class="border p-2">100%</div>
+                    <div class="col col-6 border p-2">50%</div>
+                    <div class="col col-6 border p-2">50%</div>
+                    <div class="col col-4 border p-2">33%</div>
+                    <div class="col col-4 border p-2">33%</div>
+                    <div class="col col-4 border p-2">33%</div>
+                  </div>
+                </div>
+                <div
+                  class="layout-option col-md-4 mb-4"
+                  onclick="applyDynamicLayout([[12],[6,6],[6,6]])"
+                >
+                  <div class="row">
+                    <div class="border p-2">100%</div>
+                    <div class="col col-6 border p-2">50%</div>
+                    <div class="col col-6 border p-2">50%</div>
+                    <div class="col col-6 border p-2">50%</div>
+                    <div class="col col-6 border p-2">50%</div>
+                  </div>
+                </div>
+                <div
+                  class="layout-option col-md-4 mb-4"
+                  onclick="applyDynamicLayout([[12],[4,4,4],[4,4,4]])"
+                >
+                  <div class="row">
+                    <div class="border p-2">100%</div>
+                    <div class="col col-4 border p-2">33%</div>
+                    <div class="col col-4 border p-2">33%</div>
+                    <div class="col col-4 border p-2">33%</div>
+                    <div class="col col-4 border p-2">33%</div>
+                    <div class="col col-4 border p-2">33%</div>
+                    <div class="col col-4 border p-2">33%</div>
+                  </div>
+                </div>
+              </div>
+              <button class="btn btn-danger" onclick="closeOverlay()">
+                <i class="fa-solid fa-xmark"></i> Close
+              </button>
             </div>
-      </div>
-        <textarea id="h1" class="heading dynamic-textarea" data-family="Montserrat" data-variant="700">Font pairing made simple</textarea>
-        <!-- <input id="slider" data-slider-id='slide' type="text" data-slider-min="-1" data-slider-max="1" data-slider-step="0.05" data-slider-value="0"/> -->
+          </div>
+          <a href="#" class="btn btn-default" id="select-font-size"
+            >Select Font-Size</a
+          >
+          <div class="modal" id="fontModal">
+            <div class="modal-content">
+              <span class="close" style="cursor: pointer">&times;</span>
+              <div>
+                <label for="heading-slider">Heading Font Size:</label>
+                <input
+                  type="range"
+                  id="heading-slider"
+                  min="60"
+                  max="100"
+                  value="60"
+                />
+                <input
+                  type="number"
+                  id="heading-size-input"
+                  value="60"
+                  min="60"
+                  max="100"
+                  style="width: 6rem"
+                />
+              </div>
+              <div>
+                <label for="subheading-slider">Subheading Font Size:</label>
+                <input
+                  type="range"
+                  id="subheading-slider"
+                  min="30"
+                  max="60"
+                  value="30"
+                />
+                <input
+                  type="number"
+                  id="subheading-size-input"
+                  value="30"
+                  min="30"
+                  max="60"
+                  style="width: 6rem"
+                />
+              </div>
+              <div>
+                <label for="paragraph-slider">Paragraph Font Size:</label>
+                <input
+                  type="range"
+                  id="paragraph-slider"
+                  min="12"
+                  max="30"
+                  value="12"
+                />
+                <input
+                  type="number"
+                  id="paragraph-size-input"
+                  value="12"
+                  min="12"
+                  max="20"
+                  style="width: 6rem"
+                />
+              </div>
+            </div>
+          </div>
+          <!-- <input id="slider" data-slider-id='slide' type="text" data-slider-min="-1" data-slider-max="1" data-slider-step="0.05" data-slider-value="0"/> -->
+        </div>
       </div>
     </div>
-  
 
     <div class="row">
-        <div class="controls col-md-2">
-          <button class="label" id="subtitle-label" onclick="changeFontFamily('h2')">Generate Font for Subtitle</button>
-          
-          <!-- <a href="#" target="_blank" class="label" id="subtitle-label">Select Font for Sub-Heading</a> -->
-        </div>
-        <div class="col-lg-5 col-md-6 col-md-offset-1 col-sm-7 col-xs-9">
-          <textarea id="h2" class="subheading dynamic-textarea" data-family="Lora" data-variant="italic">Generate font combinations with deep learning</textarea>
-        </div>
+      <div class="controls col-md-2" id="title-controls">
+        <button class="label" id="title-label" onclick="changeFontFamily('h1')">
+          Generate Font for Heading
+        </button>
+      </div>
+      <div id="main" class="col col-md-offset-1">
+        <textarea
+          id="h1"
+          class="heading"
+          data-family="Montserrat"
+          data-variant="700"
+        >
+Font pairing made simple</textarea
+        >
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="controls col-2">
+        <button
+          class="label"
+          id="subtitle-label"
+          onclick="changeFontFamily('h2')"
+        >
+          Generate Font for Subtitle
+        </button>
+      </div>
+      <div id="subHeading" class="col col-md-offset-1">
+        <textarea
+          id="h2"
+          class="subheading dynamic-textarea"
+          data-family="Lora"
+          data-variant="italic"
+        >
+Generate font combinations with deep learning</textarea
+        >
+      </div>
     </div>
 
     <div class="row">
       <div class="controls col-md-2">
-        <button class="label" id="content-label" onclick="changeFontFamily('content')">Generate Font for Content</button>
-        <!-- <a href="#" target="_blank" class="label" id="content-label">Select Font for Paragraph</a> -->
+        <button
+          class="label"
+          id="content-label"
+          onclick="changeFontFamily('content')"
+        >
+          Generate Font for Content
+        </button>
       </div>
-      <div class="col-lg-4 col-md-5 col-md-offset-1 col-sm-7 col-xs-9">
-        <textarea id="content" class="paragraph dynamic-textarea" data-family="Hind Madurai" data-variant="300" style="height: 308px;">Click (Generate) to create a new font pairing, (Lock) to lock fonts that you want to keep, and (Edit) to choose a font manually. The text is editable, try replacing it with your company name or other copy.
-          &#013;&#010; The goal of font pairing is to select fonts that share an overarching theme yet have a pleasing contrast. Which fonts work together is largely a matter of intuition, but we approach this problem with a neural net. See Github for more technical details.
+      <div id="content" class="col col-md-offset-1">
+        <textarea
+          id="content"
+          class="paragraph dynamic-textarea"
+          data-family="Hind Madurai"
+          data-variant="300"
+          style="height: 308px"
+        >
+Click (Generate) to create a new font pairing, (Lock) to lock fonts that you want to keep, and (Edit) to choose a font manually. The text is editable, try replacing it with your company name or other copy.
+
+The goal of font pairing is to select fonts that share an overarching theme yet have a pleasing contrast. Which fonts work together is largely a matter of intuition, but we approach this problem with a neural net. See Github for more technical details.
         </textarea>
       </div>
     </div>
 
-  </div>
-
-  <script src="./js/changeFont.js"></script>
-  <!-- <script>
-    //I commented out this Cookies Setting first lol
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-52772108-8', 'auto');
-    ga('send', 'pageview');
-
-    resize_elements();
-  </script> -->
-</body>
+    <script src="./js/changeFont.js"></script>
+    <script src="./js/changeLayout.js"></script>
+  </body>
 </html>
