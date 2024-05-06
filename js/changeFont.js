@@ -79,47 +79,62 @@ function changeFontFamily(divId) {
 
 }
 
+
+
 document.addEventListener('DOMContentLoaded', function() {
     const modal = document.getElementById('fontModal');
     const btn = document.getElementById('select-font-size');
-    const span = document.getElementsByClassName('close')[0];
+    const spans = document.getElementsByClassName('close')[0];
+
     const headingSlider = document.getElementById('heading-slider');
+    const headingInput = document.getElementById('heading-size-input');
     const subheadingSlider = document.getElementById('subheading-slider');
+    const subheadingInput = document.getElementById('subheading-size-input');
     const paragraphSlider = document.getElementById('paragraph-slider');
-    // According to the heading, sub-heading and paragraphs, assign these classes for changing the font-size
-    const headingElements = document.querySelectorAll('.heading');
-    const subheadingElements = document.querySelectorAll('.subheading');
-    const paragraphElements = document.querySelectorAll('.paragraph');
+    const paragraphInput = document.getElementById('paragraph-size-input');
 
-    btn.onclick = function() {
-        modal.style.display = "block";
+    // Sync slider and input and update font size
+    function syncSliderInput(slider, input, classList) {
+        slider.oninput = () => {
+            input.value = slider.value;
+            updateFontSize(classList, slider.value);
+        };
+        input.oninput = () => {
+            slider.value = input.value;
+            updateFontSize(classList, input.value);
+        };
     }
 
-    span.onclick = function() {
-        modal.style.display = "none";
-    }
+    syncSliderInput(headingSlider, headingInput, '.heading');
+    syncSliderInput(subheadingSlider, subheadingInput, '.subheading');
+    syncSliderInput(paragraphSlider, paragraphInput, '.paragraph');
 
-    window.onclick = function(event) {
-        if (event.target == modal) {
+    btn.onclick = () => { modal.style.display = "block"; };
+    spans.onclick = () => { modal.style.display = "none"; };
+    window.onclick = (event) => {
+        if (event.target === modal) {
             modal.style.display = "none";
         }
-    }
+    };
 
-    function updateFontSize(elements, size) {
-        elements.forEach(element => {
+    function updateFontSize(classSelector, size) {
+        document.querySelectorAll(classSelector).forEach(element => {
             element.style.fontSize = `${size / 10}em`;
+            autoAdjust(element);
         });
     }
 
-    headingSlider.addEventListener('input', function() {
-        updateFontSize(headingElements, headingSlider.value);
-    });
+    function autoAdjust(textarea) {
+        textarea.style.height = 'auto';
+        textarea.style.height = textarea.scrollHeight + 'px';
+    }
 
-    subheadingSlider.addEventListener('input', function() {
-        updateFontSize(subheadingElements, subheadingSlider.value);
-    });
-
-    paragraphSlider.addEventListener('input', function() {
-        updateFontSize(paragraphElements, paragraphSlider.value);
+    // Initial adjust for textareas
+    document.querySelectorAll('.dynamic-textarea').forEach(textarea => {
+        textarea.addEventListener('input', () => {
+            autoAdjust(textarea);
+        });
+        autoAdjust(textarea);
     });
 });
+

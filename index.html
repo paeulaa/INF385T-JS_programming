@@ -9,6 +9,8 @@
 
     <link href="https://fonts.googleapis.com/css?family=Lora:400i|Montserrat:700|Hind+Madurai:300" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+
     <link rel="stylesheet" href="./css/slider.css" />
     <link rel="stylesheet" href="./css/style2.css" />
 
@@ -16,66 +18,66 @@
 <body>
   <div class="container-fluid">
     <div class="row">
+      
       <div class="controls col-md-2" id="title-controls">
-      <button class="label" id="title-label" onclick="changeFontFamily('h1')">Generate Font for Heading</button>
+        <button class="label" id="title-label" onclick="changeFontFamily('h1')">Generate Font for Heading</button>
       <!-- <a href="#" target="_blank" class="label" id="title-label">Select Font for Heading</a> -->
-    </div>
-
-    <div id="main" class="col-lg-7 col-md-8 col-md-offset-1 col-sm-9 col-xs-9">
-      <div id="toolbar">
-        <a href="#" id="selectColor" class="btn btn-default">Select Color</a>
-        <a href="#" id="selectLayout" class="btn btn-default">Select Layout</a>
-        <!-- <a href="#" id="selectSize" class="btn btn-default">Select Font Size</a> -->
-        <a href="#" class="btn btn-default" id="select-font-size">Select Font-Size</a>
-          <div class="modal" id="fontModal">
-              <div class="modal-content">
-                  <span class="close" style="cursor:pointer;">&times;</span>
-                  <div>
-                      <label for="heading-slider">Heading Font Size (6rem - 10rem):</label>
-                      <input type="range" id="heading-slider" min="60" max="100" value="60">
-                  </div>
-                  <div>
-                      <label for="subheading-slider">Subheading Font Size (3rem - 6rem):</label>
-                      <input type="range" id="subheading-slider" min="30" max="60" value="30">
-                  </div>
-                  <div>
-                      <label for="paragraph-slider">Paragraph Font Size (1rem - 3rem):</label>
-                      <input type="range" id="paragraph-slider" min="10" max="30" value="10">
-                  </div>
-              </div>
-          </div>
-    </div>
+      </div>
+      <div id="main" class="col-lg-7 col-md-8 col-md-offset-1 col-sm-9 col-xs-9">
+        <div id="toolbar">
+          <a href="#" id="selectColor" class="btn btn-default">Select Color</a>
+          <a href="#" id="selectLayout" class="btn btn-default">Select Layout</a>
+          <a href="#" class="btn btn-default" id="select-font-size">Select Font-Size</a>
+            <div class="modal" id="fontModal">
+                <div class="modal-content">
+                    <span class="close" style="cursor:pointer;">&times;</span>
+                    <div>
+                        <label for="heading-slider">Heading Font Size:</label>
+                        <input type="range" id="heading-slider" min="60" max="100" value="60">
+                        <input type="number" id="heading-size-input" value="60" min="60" max="100" style="width: 6rem;">
+                    </div>
+                    <div>
+                        <label for="subheading-slider">Subheading Font Size:</label>
+                        <input type="range" id="subheading-slider" min="30" max="60" value="30">
+                        <input type="number" id="subheading-size-input" value="30" min="30" max="60" style="width: 6rem;">
+                    </div>
+                    <div>
+                        <label for="paragraph-slider">Paragraph Font Size:</label>
+                        <input type="range" id="paragraph-slider" min="12" max="30" value="12">
+                        <input type="number" id="paragraph-size-input" value="12" min="12" max="20" style="width:6rem;">
+                    </div>
+                </div>
+            </div>
+      </div>
+        <textarea id="h1" class="heading dynamic-textarea" data-family="Montserrat" data-variant="700">Font pairing made simple</textarea>
         <!-- <input id="slider" data-slider-id='slide' type="text" data-slider-min="-1" data-slider-max="1" data-slider-step="0.05" data-slider-value="0"/> -->
       </div>
-      
-      <textarea id="h1" class="heading" data-family="Montserrat" data-variant="700">Font pairing made simple</textarea>
-    
     </div>
-  </div>
+  
 
-  <div class="row">
+    <div class="row">
+        <div class="controls col-md-2">
+          <button class="label" id="subtitle-label" onclick="changeFontFamily('h2')">Generate Font for Subtitle</button>
+          
+          <!-- <a href="#" target="_blank" class="label" id="subtitle-label">Select Font for Sub-Heading</a> -->
+        </div>
+        <div class="col-lg-5 col-md-6 col-md-offset-1 col-sm-7 col-xs-9">
+          <textarea id="h2" class="subheading dynamic-textarea" data-family="Lora" data-variant="italic">Generate font combinations with deep learning</textarea>
+        </div>
+    </div>
+
+    <div class="row">
       <div class="controls col-md-2">
-        <button class="label" id="subtitle-label" onclick="changeFontFamily('h2')">Generate Font for Subtitle</button>
-        <!-- <a href="#" target="_blank" class="label" id="subtitle-label">Select Font for Sub-Heading</a> -->
+        <button class="label" id="content-label" onclick="changeFontFamily('content')">Generate Font for Content</button>
+        <!-- <a href="#" target="_blank" class="label" id="content-label">Select Font for Paragraph</a> -->
       </div>
-      <div class="col-lg-5 col-md-6 col-md-offset-1 col-sm-7 col-xs-9">
-        <textarea id="h2" class="subheading" data-family="Lora" data-variant="italic">Generate font combinations with deep learning</textarea>
+      <div class="col-lg-4 col-md-5 col-md-offset-1 col-sm-7 col-xs-9">
+        <textarea id="content" class="paragraph dynamic-textarea" data-family="Hind Madurai" data-variant="300" style="height: 308px;">Click (Generate) to create a new font pairing, (Lock) to lock fonts that you want to keep, and (Edit) to choose a font manually. The text is editable, try replacing it with your company name or other copy.
+          &#013;&#010; The goal of font pairing is to select fonts that share an overarching theme yet have a pleasing contrast. Which fonts work together is largely a matter of intuition, but we approach this problem with a neural net. See Github for more technical details.
+        </textarea>
       </div>
-  </div>
+    </div>
 
-  <div class="row">
-    <div class="controls col-md-2">
-      <button class="label" id="content-label" onclick="changeFontFamily('content')">Generate Font for Paragraph</button>
-      <!-- <a href="#" target="_blank" class="label" id="content-label">Select Font for Paragraph</a> -->
-  </div>
-  <div class="col-lg-4 col-md-5 col-md-offset-1 col-sm-7 col-xs-9">
-  <textarea id="content" class="paragraph" data-family="Hind Madurai" data-variant="300">Click (Generate) to create a new font pairing, (Lock) to lock fonts that you want to keep, and (Edit) to choose a font manually. The text is editable, try replacing it with your company name or other copy.
-
-  The goal of font pairing is to select fonts that share an overarching theme yet have a pleasing contrast. Which fonts work together is largely a matter of intuition, but we approach this problem with a neural net. See Github for more technical details.
-  </textarea>
-
-  </div>
-  </div>
   </div>
 
   <script src="./js/changeFont.js"></script>
