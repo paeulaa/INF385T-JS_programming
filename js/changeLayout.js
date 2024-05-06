@@ -33,7 +33,8 @@ function applyDynamicLayout(layouts) {
       paragraphContent.appendChild(row);
     }
   });
-
+  colorChange();
+  fontChange();
   closeOverlay();
 }
 
@@ -42,18 +43,26 @@ function createBootstrapColumn(size, rowIndex) {
   let content = document.createElement("textarea");
   col.className = "col-" + size;
   if (rowIndex === 0) {
-      content.id = "h1";
-      content.className = "heading";
-    content.placeholder = "Heading";
+    content.id = "h1";
+    content.className = "heading dynamic-textarea";
+    content.textContent = "Font pairing made simple";
   } else if (rowIndex === 1) {
     content.id = "h2";
-    content.placeholder = "Sub-Heading";
-    content.className = "subheading";
+    content.className = "subheading dynamic-textarea";
+    content.textContent = "Generate a new font pairing!";
   } else {
-    content.id = "content";
-    content.className = "paragraph";
-    content.placeholder = "Paragraph";
+    content.id = "cont";
+    content.className = "paragraph dynamic-textarea";
+    content.textContent =
+      "Click (Generate) to create a new font pairing, (Lock) to lock fonts that you want to keep, and (Edit) to choose a font manually. The text is editable, try replacing it with your company name or other copy.\n\nThe goal of font pairing is to select fonts that share an overarching theme yet have a pleasing contrast. Which fonts work together is largely a matter of intuition, but we approach this problem with a neural net. See Github for more technical details.";
   }
   col.appendChild(content);
   return col;
 }
+
+window.addEventListener("click", function (event) {
+  let modal = document.getElementById("layoutOverlay");
+  if (event.target === modal) {
+    modal.style.display = "none";
+  }
+});

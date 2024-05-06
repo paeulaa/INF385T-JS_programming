@@ -92,7 +92,7 @@ function changeFontFamily(divId) {
 function fontChange() {
   const modal = document.getElementById("fontModal");
   const btn = document.getElementById("select-font-size");
-  const spans = document.getElementsByClassName("close")[0];
+  const spans = document.getElementById("fontModalClose");
 
   const headingSlider = document.getElementById("heading-slider");
   const headingInput = document.getElementById("heading-size-input");
@@ -103,6 +103,8 @@ function fontChange() {
 
   // Sync slider and input and update font size
   function syncSliderInput(slider, input, classList) {
+    updateFontSize(classList, slider.value);
+    updateFontSize(classList, input.value);
     slider.oninput = () => {
       input.value = slider.value;
       updateFontSize(classList, slider.value);
@@ -123,11 +125,11 @@ function fontChange() {
   spans.onclick = () => {
     modal.style.display = "none";
   };
-  window.onclick = (event) => {
+  window.addEventListener("click", function (event) {
     if (event.target === modal) {
       modal.style.display = "none";
     }
-  };
+  });
 
   function updateFontSize(classSelector, size) {
     document.querySelectorAll(classSelector).forEach((element) => {
@@ -138,7 +140,7 @@ function fontChange() {
 
   function autoAdjust(textarea) {
     textarea.style.height = "auto";
-    textarea.style.height = textarea.scrollHeight + "px";
+    textarea.style.height = textarea.scrollHeight + 2 + "px";
   }
 
   // Initial adjust for textareas
@@ -150,8 +152,60 @@ function fontChange() {
   });
 }
 
+// write a function similar to fontChange() to change font color
+function colorChange() {
+  const modal = document.getElementById("colorModal");
+  const btn = document.getElementById("selectColor");
+  const spans = document.getElementById("colorModalClose");
+
+  const headingColor = document.getElementById("heading-color-input");
+  const subheadingColor = document.getElementById("subheading-color-input");
+  const paragraphColor = document.getElementById("paragraph-color-input");
+
+  btn.onclick = () => {
+    modal.style.display = "block";
+  };
+  spans.onclick = () => {
+    modal.style.display = "none";
+  };
+  window.addEventListener("click", function (event) {
+    if (event.target === modal) {
+      modal.style.display = "none";
+    }
+  });
+
+  function updateFontColor(classSelector, color) {
+    document.querySelectorAll(classSelector).forEach((element) => {
+      element.style.color = color;
+    });
+  }
+
+  function syncColorInput(input, classSelector) {
+    updateFontColor(classSelector, input.value);
+    input.oninput = () => {
+      updateFontColor(classSelector, input.value);
+    };
+  }
+
+  syncColorInput(headingColor, ".heading");
+  syncColorInput(subheadingColor, ".subheading");
+  syncColorInput(paragraphColor, ".paragraph");
+
+  headingColor.oninput = () => {
+    updateFontColor(".heading", headingColor.value);
+  };
+  subheadingColor.oninput = () => {
+    updateFontColor(".subheading", subheadingColor.value);
+  };
+  paragraphColor.oninput = () => {
+    updateFontColor(".paragraph", paragraphColor.value);
+  };
+}
+
 document
   .getElementById("select-font-size")
   .addEventListener("click", fontChange());
+document.getElementById("selectColor").addEventListener("click", colorChange());
 
-document.addEventListener("DOMContentLoaded", fontChange());
+// document.addEventListener("DOMContentLoaded", fontChange());
+// document.addEventListener("DOMContentLoaded", colorChange());
