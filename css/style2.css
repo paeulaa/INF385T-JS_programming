@@ -82,8 +82,8 @@ button {
 }
 
 .controls {
-  background-color: #111;
-  width: 13%;
+  background-color: #222;
+  width: 15%;
   float: left;
   position: relative;
   z-index: 1;
@@ -218,25 +218,25 @@ button {
 }
 
 .label {
-  font-size: 1em;
+  font-size: 0.7rem;
   font-weight: 400;
   display: block;
-  text-align: right;
+  text-align: center;
   color: #bbb;
   border-width: 1px;
-  border-style: solid;
-  border-color: white;
-  padding: 1rem;
-  border-radius: 2rem;
-  padding-right: 1.5em;
-  padding-top: 0.5em;
+  padding: 1em;
+  border: solid;
+  border-color: #666;
+  background-color: #222;
+  padding: 1em 0.5em 1em 0.5em;
+  border-radius: 2em;
+  margin-left: 3em;
 }
 
 .label:hover {
   color: #eee;
   font-weight: 400;
   background-color: #666;
-  border: none;
 }
 
 .btn-circle.active {
